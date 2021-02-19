@@ -11,24 +11,20 @@ using namespace std;
  */
 bool isUniqueCharsBruteForce1(string str)
 {
-    int minValueIndex;
-    int temp;
+    int key, j;
 
-    for (int i = 0; i < str.length(); i++)
+    for (int i = 1; i < str.length(); i++)
     {
-        minValueIndex = i;
+        key = str[i];
+        j = i - 1;
 
-        for (int j = i + 1; j < str.length(); j++)
+        while(j >= 0 && str[j] > key)
         {
-            if (str[minValueIndex] > str[j])
-            {
-                minValueIndex = j;
-            }
+            str[j + 1] = str[j];
+            j = j - 1;
         }
 
-        temp = str[i];
-        str[i] = str[minValueIndex];
-        str[minValueIndex] = temp;
+        str[j + 1] = key;
     }
 
     for (int i = 0; i < str.length() - 1; i++)
